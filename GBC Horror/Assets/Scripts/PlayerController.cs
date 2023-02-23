@@ -65,10 +65,12 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 // Pickup the "nearby item" and add to inventory
-                print("Attempted Pickup");
                 collectedGems.Add(nearbyItem);
-                print(collectedGems);
-                print(collectedGems.Count);
+                #if UNITY_EDITOR
+                    print("Attempted Pickup");
+                    print(collectedGems);
+                    print(collectedGems.Count);
+                #endif
 
                 // Set bools to false to prevent repeat pickups and remove gameobject
                 nearbyItem.SetActive(false);
@@ -91,7 +93,9 @@ public class PlayerController : MonoBehaviour
                 {
                     // Remove all gems from the inventory and begin final attack
                     collectedGems.Clear();
-                    print(collectedGems.Count + "    The Gate Opens");
+                    #if UNITY_EDITOR
+                        print(collectedGems.Count + "    The Gate Opens");
+                    #endif    
 
                     // THIS IS WHERE A CALL FOR STARTING FINAL ATTACK WOULD GO !*!*!*!*!*!*!
                 }
@@ -124,13 +128,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        print("In range of something?");
+        #if UNITY_EDITOR
+            print("In range of something?");
+        #endif
 
         // When the trigger volume is a gem
         if (collision.gameObject.CompareTag("GemPickup"))
         {
 
-            print("In Range of Gem");
+            #if UNITY_EDITOR
+                print("In Range of Gem");
+            #endif
 
             // Retain info about the game object, set bool to true for CollectGems function
             inRangeOfItem = true;
@@ -142,7 +150,10 @@ public class PlayerController : MonoBehaviour
         {
             // Set statue bool to true for PlaceGems function
             inRangeOfStatue = true;
-            print(inRangeOfStatue);
+            
+            #if UNITY_EDITOR
+                print(inRangeOfStatue);
+            #endif
         }
     }
 }
