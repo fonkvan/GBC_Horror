@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
 
     private GameObject nearbyItem;
+    private Teddy teddyToInteractWith;
 
     public List<GameObject> collectedGems = new List<GameObject>();
 
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
         // Function for removing gems from inventory at statue when all 3 are present. Starts final attack
         PlaceGems();
 
+        InteractWithTeddy();
+        
         // As long as the player is not moving
         if(!isMoving)
         {
@@ -154,6 +158,50 @@ public class PlayerController : MonoBehaviour
             #if UNITY_EDITOR
                 print(inRangeOfStatue);
             #endif
+        }
+
+        if (collision.gameObject.CompareTag("Teddy"))
+        {
+            teddyToInteractWith = collision.gameObject.GetComponent<Teddy>();
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        // When the trigger volume is a gem
+        if (collision.gameObject.CompareTag("GemPickup"))
+        {
+
+            #if UNITY_EDITOR
+                print("In Range of Gem");
+            #endif
+
+            // Retain info about the game object, set bool to true for CollectGems function
+            inRangeOfItem = false;
+            nearbyItem = null;
+        }
+
+        // If the trigger volume was the statue
+        if (collision.gameObject.CompareTag("Statue"))
+        {
+            inRangeOfStatue = false;
+            
+            #if UNITY_EDITOR
+                print(inRangeOfStatue);
+            #endif
+        }
+
+        if (collision.gameObject.CompareTag("Teddy"))
+        {
+            teddyToInteractWith = null;
+        }
+    }
+
+    void InteractWithTeddy()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && teddyToInteractWith)
+        {
+            teddyToInteractWith.Interact();
         }
     }
 }
