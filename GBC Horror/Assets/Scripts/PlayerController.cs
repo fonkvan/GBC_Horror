@@ -14,14 +14,15 @@ public class PlayerController : MonoBehaviour
 
     private GameObject nearbyItem;
     private Teddy teddyToInteractWith;
+    private Chest chest;
 
     public LayerMask solidObjectsLayer;
-    public List<GameObject> collectedGems = new List<GameObject>();
+    public static List<GameObject> collectedGems = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -82,6 +83,8 @@ public class PlayerController : MonoBehaviour
                     print(collectedGems.Count);
                 #endif
 
+                GameManager.Instance.GemCollected(nearbyItem);
+                
                 // Set bools to false to prevent repeat pickups and remove gameobject
                 nearbyItem.SetActive(false);
                 inRangeOfItem = false;
@@ -120,11 +123,28 @@ public class PlayerController : MonoBehaviour
         // Set the player to isMoving
         isMoving = true;
 
+        Vector3 startingPos = transform.position;
+
+        float t = Time.time;
+        
         // While the player is not at targetPos (or very very close)
         while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             // Move towards targetPos over time
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+
+            //catch: tried moving to 1 tile for 1 seconds, can't do this
+            if (Time.time - t >= 1f)
+            {
+                if ((targetPos - startingPos).sqrMagnitude > (transform.position - startingPos).sqrMagnitude)
+                {
+                    //we can't move, break coroutine.
+                    transform.position = startingPos;
+                    isMoving = false;
+                    yield break;
+                }
+            }
+            
             // When this position gets very close, break the while loop
             yield return null;
         }
@@ -138,6 +158,40 @@ public class PlayerController : MonoBehaviour
 
     private bool IsWalkable(Vector3 targetPos)
     {
+        float offset = 0.1f;
+        Vector3 curPos = transform.position;
+        Vector2 startA;
+        Vector2 startB;
+        Vector2 endA;
+        Vector2 endB;
+
+        //lines "bound" the player using offset
+        if (Mathf.Approximately(targetPos.x, curPos.x))
+        {
+            //moving vertically
+            startA = new Vector2(curPos.x + offset, curPos.y);
+            startB = new Vector2(curPos.x - offset, curPos.y);
+            endA = new Vector2(targetPos.x + offset, targetPos.y);
+            endB = new Vector2(targetPos.x - offset, targetPos.y);
+        }
+        else
+        {
+            //moving horizontally
+            startA = new Vector2(curPos.x, curPos.y + offset);
+            startB = new Vector2(curPos.x, curPos.y - offset);
+            endA = new Vector2(targetPos.x, targetPos.y + offset);
+            endB = new Vector2(targetPos.x, targetPos.y - offset);
+        }
+
+        Collider2D colCastA = Physics2D.Linecast(startA, endA, solidObjectsLayer).collider;
+        Collider2D colCastB = Physics2D.Linecast(startB, endB, solidObjectsLayer).collider;
+
+        if (colCastA && colCastB)
+        {
+            return false;
+        }
+        return true;
+        /*
         if (Physics2D.OverlapCircle(targetPos, 0.1f, solidObjectsLayer) != null)
         {
             return false;
@@ -145,7 +199,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             return true;
-        }
+        }*/
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -182,6 +236,11 @@ public class PlayerController : MonoBehaviour
         {
             teddyToInteractWith = collision.gameObject.GetComponent<Teddy>();
         }
+
+        if (collision.gameObject.CompareTag("Chest"))
+        {
+            chest = collision.gameObject.GetComponentInParent<Chest>();
+        }
     }
 
     public void OnTriggerExit2D(Collider2D collision)
@@ -213,6 +272,11 @@ public class PlayerController : MonoBehaviour
         {
             teddyToInteractWith = null;
         }
+
+        if (collision.gameObject.CompareTag("Chest"))
+        {
+            chest = null;
+        }
     }
 
     void InteractWithTeddy()
@@ -225,7 +289,10 @@ public class PlayerController : MonoBehaviour
 
     void InteractWithChest()
     {
-        //TODO
+        if (Input.GetKeyDown(KeyCode.E) && chest)
+        {
+            chest.Interact();
+        }
     }
 }
 
