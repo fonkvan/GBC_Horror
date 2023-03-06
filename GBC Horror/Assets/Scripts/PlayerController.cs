@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private GameObject nearbyItem;
     private Teddy teddyToInteractWith;
 
+    public LayerMask solidObjectsLayer;
     public List<GameObject> collectedGems = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -33,6 +34,8 @@ public class PlayerController : MonoBehaviour
         PlaceGems();
 
         InteractWithTeddy();
+
+        InteractWithChest();
         
         // As long as the player is not moving
         if(!isMoving)
@@ -54,7 +57,10 @@ public class PlayerController : MonoBehaviour
                 targetPosition.x += moveInput.x;
                 targetPosition.y += moveInput.y;
 
-                StartCoroutine(MoveOverTime(targetPosition));
+                if (IsWalkable(targetPosition))
+                {
+                    StartCoroutine(MoveOverTime(targetPosition));
+                }
             }
         }
     }
@@ -130,6 +136,18 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
     }
 
+    private bool IsWalkable(Vector3 targetPos)
+    {
+        if (Physics2D.OverlapCircle(targetPos, 0.1f, solidObjectsLayer) != null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         #if UNITY_EDITOR
@@ -173,10 +191,10 @@ public class PlayerController : MonoBehaviour
         {
 
             #if UNITY_EDITOR
-                print("In Range of Gem");
+                print("No longer in Range of Gem");
             #endif
 
-            // Retain info about the game object, set bool to true for CollectGems function
+            // Retain info about the game object, set bool to false - gem is out of range now
             inRangeOfItem = false;
             nearbyItem = null;
         }
@@ -203,6 +221,11 @@ public class PlayerController : MonoBehaviour
         {
             teddyToInteractWith.Interact();
         }
+    }
+
+    void InteractWithChest()
+    {
+        //TODO
     }
 }
 
