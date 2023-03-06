@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
         PlaceGems();
 
         InteractWithTeddy();
+
+        InteractWithChest();
         
         // As long as the player is not moving
         if(!isMoving)
@@ -203,6 +205,11 @@ public class PlayerController : MonoBehaviour
         {
             teddyToInteractWith.Interact();
         }
+    }
+
+    void InteractWithChest()
+    {
+        //TODO
     }
 }
 
