@@ -73,7 +73,7 @@ public class PuzzleThree : MonoBehaviour
 
     void Check()
     {
-        if (count == 20)
+        if (count == 9)
         {
             endPuzzle?.Invoke();
         }

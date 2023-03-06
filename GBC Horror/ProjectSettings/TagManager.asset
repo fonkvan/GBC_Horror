@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GemPickup
   - Statue
+  - Teddy
   layers:
   - Default
   - TransparentFX
