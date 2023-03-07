@@ -8,7 +8,7 @@ public class Chest : MonoBehaviour
     private PlayerController playerController;
     private float canvasActivationTime;
     private SpriteRenderer spriteRenderer;
-    public Canvas canvas;
+    public GameObject dial;
     public Sprite openedChest;
     public GameObject reward;
 
@@ -27,21 +27,21 @@ public class Chest : MonoBehaviour
     {
         if (!GameManager.Instance.puzzleOneSolved 
             && Input.GetKeyDown(KeyCode.E) 
-            && canvas.enabled 
+            && dial.activeSelf 
             && playerController 
             && (Time.time - canvasActivationTime >= 0.25f))
         {
             canvasActivationTime = 0f;
             playerController.enabled = true;
-            canvas.gameObject.SetActive(false);
+            dial.gameObject.SetActive(false);
         }
     }
     
     public void Interact()
     {
-        if (canvas && !GameManager.Instance.puzzleOneSolved)
+        if (dial && !GameManager.Instance.puzzleOneSolved)
         {
-            canvas.gameObject.SetActive(true);
+            dial.gameObject.SetActive(true);
             playerController.enabled = false;
             canvasActivationTime = Time.time;
             
@@ -55,7 +55,7 @@ public class Chest : MonoBehaviour
     {
         playerController.enabled = true;
         spriteRenderer.sprite = openedChest;
-        canvas.gameObject.SetActive(false);
+        dial.gameObject.SetActive(false);
         if (!GameManager.Instance.redCollected)
         {
             reward.SetActive(true);

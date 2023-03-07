@@ -7,12 +7,38 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public String sceneToLoad;
+    public Animator animator;
+    private bool fading = false;
+    private float animStartTime = 0f;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
-            SceneManager.LoadScene(sceneToLoad);
+            FadeToLevel();
         }
+    }
+
+    void Update()
+    {
+        if (fading)
+        {
+            if (Time.time - animStartTime >= 1f)
+            {
+                OnFadeComplete();
+            }
+        }
+    }
+    
+    public void FadeToLevel()
+    {
+        animator.SetTrigger("FadeOut");
+        animStartTime = Time.time;
+        fading = true;
+    }
+
+    public void OnFadeComplete()
+    {
+        SceneManager.LoadScene(sceneToLoad);
     }
 }

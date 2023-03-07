@@ -172,35 +172,35 @@ public class PlayerController : MonoBehaviour
     }
 
     private bool IsWalkable(Vector3 targetPos)
-    {
+    { 
         float offset = 0.1f;
         Vector3 curPos = transform.position;
         Vector2 startA;
         Vector2 startB;
         Vector2 endA;
         Vector2 endB;
-
+ 
         //lines "bound" the player using offset
         if (Mathf.Approximately(targetPos.x, curPos.x))
         {
             //moving vertically
-            startA = new Vector2(curPos.x + offset, curPos.y);
+            startA = new Vector2(curPos.x + offset, curPos.y); 
             startB = new Vector2(curPos.x - offset, curPos.y);
             endA = new Vector2(targetPos.x + offset, targetPos.y);
             endB = new Vector2(targetPos.x - offset, targetPos.y);
         }
         else
-        {
+        { 
             //moving horizontally
             startA = new Vector2(curPos.x, curPos.y + offset);
             startB = new Vector2(curPos.x, curPos.y - offset);
             endA = new Vector2(targetPos.x, targetPos.y + offset);
             endB = new Vector2(targetPos.x, targetPos.y - offset);
         }
-
+ 
         Collider2D colCastA = Physics2D.Linecast(startA, endA, solidObjectsLayer).collider;
         Collider2D colCastB = Physics2D.Linecast(startB, endB, solidObjectsLayer).collider;
-
+ 
         if (colCastA && colCastB)
         {
             return false;
