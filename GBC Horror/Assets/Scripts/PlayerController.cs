@@ -19,6 +19,14 @@ public class PlayerController : MonoBehaviour
     public LayerMask solidObjectsLayer;
     public static List<GameObject> collectedGems = new List<GameObject>();
 
+    private Animator animator;
+
+    private void Awake()
+    {
+        // Get reference to animator controller
+        animator = GetComponent<Animator>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +61,10 @@ public class PlayerController : MonoBehaviour
             // If there is a nonzero input
             if (moveInput != Vector2.zero)
             {
+                // Set animator floats for direction
+                animator.SetFloat("moveX", moveInput.x);
+                animator.SetFloat("moveY", moveInput.y);
+
                 // Assign target position and call coroutine to move
                 Vector3 targetPosition = transform.position;
                 targetPosition.x += moveInput.x;
@@ -64,6 +76,9 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        // Set animator bool for moving animations
+        animator.SetBool("isMoving", isMoving);
     }
 
     // Called in Update every frame
