@@ -49,30 +49,34 @@ public class PlayerController : MonoBehaviour
         // As long as the player is not moving
         if(!isMoving)
         {
-            // Find the inputs
-            moveInput.x = Input.GetAxisRaw("Horizontal");
-            moveInput.y = Input.GetAxisRaw("Vertical");
-
-            if (moveInput.x != 0)
+            if(moveInput == Vector2.zero)
             {
-                moveInput.y = 0;
-            }
+                // Find the inputs
+                moveInput.x = Input.GetAxisRaw("Horizontal");
+                moveInput.y = Input.GetAxisRaw("Vertical");
 
-            // If there is a nonzero input
-            if (moveInput != Vector2.zero)
-            {
-                // Set animator floats for direction
-                animator.SetFloat("moveX", moveInput.x);
-                animator.SetFloat("moveY", moveInput.y);
 
-                // Assign target position and call coroutine to move
-                Vector3 targetPosition = transform.position;
-                targetPosition.x += moveInput.x;
-                targetPosition.y += moveInput.y;
-
-                if (IsWalkable(targetPosition))
+                if (moveInput.x != 0)
                 {
-                    StartCoroutine(MoveOverTime(targetPosition));
+                    moveInput.y = 0;
+                }
+
+                // If there is a nonzero input
+                if (moveInput != Vector2.zero)
+                {
+                    // Assign target position and call coroutine to move
+                    Vector3 targetPosition = transform.position;
+                    targetPosition.x += moveInput.x;
+                    targetPosition.y += moveInput.y;
+
+                    if (IsWalkable(targetPosition))
+                    {
+                        StartCoroutine(MoveOverTime(targetPosition));
+                    }
+                    else
+                    {
+                        moveInput = Vector2.zero;
+                    }
                 }
             }
         }
@@ -139,12 +143,17 @@ public class PlayerController : MonoBehaviour
         isMoving = true;
 
         Vector3 startingPos = transform.position;
+        Vector2 reverseMoveInput = moveInput * -1;
 
         float t = Time.time;
         
         // While the player is not at targetPos (or very very close)
         while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
+            // Set animator floats for direction
+            animator.SetFloat("moveX", moveInput.x);
+            animator.SetFloat("moveY", moveInput.y);
+
             // Move towards targetPos over time
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
 
@@ -153,14 +162,42 @@ public class PlayerController : MonoBehaviour
             {
                 if ((targetPos - startingPos).sqrMagnitude > (transform.position - startingPos).sqrMagnitude)
                 {
-                    //we can't move, break coroutine.
+                    //We can't move, break coroutine
+                    // Start by naturally returning the player to their previous tile
+                    while ((startingPos - transform.position).sqrMagnitude > Mathf.Epsilon)
+                    {
+                        // If moveInput has not yet been reversed
+                        if (moveInput != reverseMoveInput)
+                        {
+                            // Reverse move input
+                            moveInput = reverseMoveInput;
+
+                            // Set animator floats so player looks in the right direction
+                            animator.SetFloat("moveX", moveInput.x);
+                            animator.SetFloat("moveY", moveInput.y);
+                        }
+
+                        // Move towards starting position
+                        transform.position = Vector3.MoveTowards(transform.position, startingPos, moveSpeed * Time.deltaTime);
+
+                        // Return coroutine to the stack
+                        yield return null;
+                    }
+
+                    // Set transform absolutely to startingPos
                     transform.position = startingPos;
+
+                    // Reset movement variables for next input and break coroutine
                     isMoving = false;
+                    moveInput = Vector2.zero;
+                    print(isMoving);
+                    print(moveInput);
                     yield break;
                 }
+
             }
-            
-            // When this position gets very close, break the while loop
+
+            // Return coroutine to the stack
             yield return null;
         }
 
@@ -169,6 +206,7 @@ public class PlayerController : MonoBehaviour
 
         // The player is no longer moving 
         isMoving = false;
+        moveInput = Vector2.zero;
     }
 
     private bool IsWalkable(Vector3 targetPos)
