@@ -352,11 +352,6 @@ public class PlayerController : MonoBehaviour
             chest.Interact();
         }
     }
-
-    public void Default()
-    {
-        gameObject.transform.position = GameManager.Instance.mainRoomPos;
-    }
 }
 
 
