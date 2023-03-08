@@ -9,6 +9,7 @@ TagManager:
   - Teddy
   - Chest
   - Monster
+  - jumpscare
   layers:
   - Default
   - TransparentFX

@@ -21,11 +21,13 @@ public class PlayerController : MonoBehaviour
     public static List<GameObject> collectedGems = new List<GameObject>();
 
     private Animator animator;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         // Get reference to animator controller
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -87,6 +89,18 @@ public class PlayerController : MonoBehaviour
 
         // Set animator bool for moving animations
         animator.SetBool("isMoving", isMoving);
+
+        if (isMoving)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            audioSource.Stop();
+        }
     }
 
     // Called in Update every frame
@@ -298,6 +312,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Chest"))
         {
             chest = collision.gameObject.GetComponentInParent<Chest>();
+        }
+
+        if (collision.gameObject.CompareTag("jumpscare"))
+        {
+            print("sending Jumpscare message");
+            collision.SendMessage("StartJumpscare");
         }
     }
 
