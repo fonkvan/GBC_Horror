@@ -6,8 +6,6 @@ using UnityEngine;
 public class Teddy : MonoBehaviour
 {
     public List<GameObject> solution;
-    
-    [SerializeField]
     private static List<GameObject> currentGuess;
 
     private void Start()
@@ -63,10 +61,8 @@ public class Teddy : MonoBehaviour
 
     private void EndPuzzle()
     {
-        //unlock holder
-        #if UNITY_EDITOR
-            Debug.Log("You solved the Teddy Puzzle!");
-        #endif
+        GameManager.Instance.puzzleTwoSolved = true;
+        
     }
 
     private void ResetPuzzle()

@@ -8,11 +8,17 @@ public class SceneLoader : MonoBehaviour
 {
     public String sceneToLoad;
     public Animator animator;
+    public GameObject positionToReturnTo = null;
     private bool fading = false;
     private float animStartTime = 0f;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if (SceneManager.GetActiveScene().name == "Main Room" && positionToReturnTo)
+        {
+            GameManager.Instance.mainRoomPos = positionToReturnTo.transform.position;
+        }
+        
         if (col.CompareTag("Player"))
         {
             FadeToLevel();

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,7 +31,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        if (SceneManager.GetActiveScene().name == "Main Room")
+        {
+            gameObject.transform.position = GameManager.Instance.mainRoomPos;
+        }
     }
 
     // Update is called once per frame
@@ -127,8 +131,9 @@ public class PlayerController : MonoBehaviour
                     collectedGems.Clear();
                     #if UNITY_EDITOR
                         print(collectedGems.Count + "    The Gate Opens");
-                    #endif    
+                    #endif
 
+                    GameManager.Instance.gemsSet = true;
                     // THIS IS WHERE A CALL FOR STARTING FINAL ATTACK WOULD GO !*!*!*!*!*!*!
                 }
             }

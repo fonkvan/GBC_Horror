@@ -122,6 +122,7 @@ public class PuzzleOne : MonoBehaviour
             && (int.Parse(dialTwo.text) == greenDolls) 
             && (int.Parse(dialThree.text) == blueDolls))
         {
+            GetComponent<AudioSource>().Play();
             chest.Unlock();
         }
     }

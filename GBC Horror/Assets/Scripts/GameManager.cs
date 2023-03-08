@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public bool puzzleOneSolved = false;
+    public bool puzzleTwoSolved = false;
+    public bool puzzleThreeSolved = false;
     public bool redCollected = false;
     public bool greenCollected = false;
     public bool blueCollected = false;
+    public bool gemsSet = false;
+    public Vector3 mainRoomPos = new Vector3(1.5f, -0.5f, 0f);
 
     private void Awake()
     {
@@ -18,7 +23,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
