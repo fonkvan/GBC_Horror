@@ -8,6 +8,7 @@ TagManager:
   - Statue
   - Teddy
   - Chest
+  - Monster
   layers:
   - Default
   - TransparentFX

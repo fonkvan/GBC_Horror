@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour
     public bool blueCollected = false;
     public bool gemsSet = false;
     public Vector3 mainRoomPos = new Vector3(1.5f, -0.5f, 0f);
+    private Vector3 defaultPos = new Vector3(1.5f, -0.5f, 0f);
+    public Vector3 defaultMonsterPos = new Vector3(-0.5f, 2.5f, 0f);
+    public GameObject finalMonster;
 
     private void Awake()
     {
@@ -25,7 +29,16 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        DontDestroyOnLoad(finalMonster);
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        if (finalMonster && gemsSet)
+        {
+            finalMonster.SetActive(true);
+        }
     }
 
     public void GemCollected(GameObject gem)
@@ -42,5 +55,19 @@ public class GameManager : MonoBehaviour
         {
             blueCollected = true;
         }
+    }
+
+    public void ResetGame()
+    {
+        redCollected = false;
+        greenCollected = false;
+        blueCollected = false;
+        puzzleOneSolved = false;
+        puzzleTwoSolved = false;
+        puzzleThreeSolved = false;
+        mainRoomPos = defaultPos;
+        gemsSet = false;
+        finalMonster.GetComponent<Monster>().Default();
+        SceneManager.LoadScene("Main Menu");
     }
 }
