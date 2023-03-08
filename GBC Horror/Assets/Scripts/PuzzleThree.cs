@@ -11,7 +11,11 @@ public class PuzzleThree : MonoBehaviour
     private PlayerController playerController;
     public GameObject player;
     public GameObject parentOfTiles;
-    public AudioSource gateOpening;
+    private AudioSource gateOpening;
+    public GameObject gateA;
+    public GameObject gateB;
+    public Sprite gateOpenSprite;
+    public GameObject gem;
 
     delegate void EndPuzzle();
     private EndPuzzle endPuzzle;
@@ -21,6 +25,15 @@ public class PuzzleThree : MonoBehaviour
     
     void Start()
     {
+        if (GameManager.Instance.puzzleThreeSolved)
+        {
+            OpenGate();
+            if (GameManager.Instance.blueCollected)
+            {
+                Destroy(gem);
+            }
+        }
+        
         checkForResume = false;
         count = 0;
         Transform[] children = parentOfTiles.GetComponentsInChildren<Transform>();
@@ -32,12 +45,23 @@ public class PuzzleThree : MonoBehaviour
         }
         tiles.RemoveAt(0);
 
+        if (GameManager.Instance.puzzleThreeSolved)
+        {
+            foreach (GameObject t in tiles)
+            {
+                Tile tile = t.gameObject.GetComponent<Tile>();
+                tile.SetSpritePushed();
+                tile.DisableTrigger();
+            }
+        }
+
         gateOpening = GetComponent<AudioSource>();
 
         endPuzzle += DisablePuzzle;
         endPuzzle += DisableOtherSounds;
         endPuzzle += PlayPuzzleEndSound;
         endPuzzle += DisablePlayerController;
+        endPuzzle += OpenGate;
 
         resumeWorldStatus += EnableAudio;
         resumeWorldStatus += EnablePlayerController;
@@ -75,6 +99,7 @@ public class PuzzleThree : MonoBehaviour
     {
         if (count == 9)
         {
+            GameManager.Instance.puzzleThreeSolved = true;
             endPuzzle?.Invoke();
         }
     }
@@ -86,6 +111,8 @@ public class PuzzleThree : MonoBehaviour
             Collider2D collider = tile.GetComponent<Collider2D>();
             collider.enabled = false;
         }
+
+        checkForResume = true;
     }
 
     void EnableAudio()
@@ -113,10 +140,20 @@ public class PuzzleThree : MonoBehaviour
         playerController.enabled = false;
     }
 
+    void OpenGate()
+    {
+        gateA.gameObject.GetComponent<SpriteRenderer>().sprite = gateOpenSprite;
+        gateB.gameObject.GetComponent<SpriteRenderer>().sprite = gateOpenSprite;
+
+        gateA.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gateB.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+    }
+
     void Update()
     {
         if (checkForResume && !gateOpening.isPlaying)
         {
+            checkForResume = false;
             resumeWorldStatus?.Invoke();
         }
     }
