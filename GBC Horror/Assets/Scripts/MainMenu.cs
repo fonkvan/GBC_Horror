@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    void Update()
+
+    public void PlayGame()
     {
-        if (Input.anyKeyDown)
-        {
-            SceneManager.LoadScene("Main Room");
-        }
+        SceneManager.LoadScene("Main Room");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
