@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public Vector3 defaultMonsterPos = new Vector3(-0.5f, 2.5f, 0f);
     public GameObject finalMonster;
 
+    public AudioSource creakingWood;
+    private float timeSincePlayed;
+
     private void Awake()
     {
         if (Instance)
@@ -30,6 +33,8 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(finalMonster);
         DontDestroyOnLoad(gameObject);
+
+        timeSincePlayed = Time.time;
     }
 
     private void Update()
@@ -37,6 +42,23 @@ public class GameManager : MonoBehaviour
         if (finalMonster && gemsSet)
         {
             finalMonster.SetActive(true);
+        }
+
+        // Randomly create creaking wood sound if not already playing
+        if (!creakingWood.isPlaying)
+        {
+            if (Time.time - timeSincePlayed >= 7f)
+            {
+                float randomNumber = UnityEngine.Random.Range(0, 100);
+                print(randomNumber);
+                if (randomNumber < 2)
+                {
+                    print("creaking wood");
+                    creakingWood.panStereo = UnityEngine.Random.Range(-1, 1);
+                    creakingWood.Play();
+                    timeSincePlayed = Time.time;
+                }
+            }
         }
     }
 

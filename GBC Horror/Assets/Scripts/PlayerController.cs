@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private AudioSource audioSource;
 
+    public AudioSource getGem;
+
     private void Awake()
     {
         // Get reference to animator controller
@@ -112,6 +114,8 @@ public class PlayerController : MonoBehaviour
             // If the E key is pressed
             if (Input.GetKeyDown(KeyCode.E))
             {
+                // Play Pickup Sound
+                getGem.Play();
                 // Pickup the "nearby item" and add to inventory
                 collectedGems.Add(nearbyItem);
                 #if UNITY_EDITOR

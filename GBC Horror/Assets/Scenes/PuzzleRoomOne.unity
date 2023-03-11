@@ -475,7 +475,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1c9b94901f7a29b4489bf8206d5416b7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.186
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2392,7 +2392,8 @@ Transform:
   m_LocalPosition: {x: 1.5, y: -6.5, z: -10.064351}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 934360394}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3092,6 +3093,73 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd11156b18e8c90429876777a2c2b806, type: 3}
+--- !u!1001 &934360392
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 519420032}
+    m_Modifications:
+    - target: {fileID: 4768625605125846914, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_Name
+      value: Sounds
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+--- !u!82 &934360393 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4768625604880751792, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+  m_PrefabInstance: {fileID: 934360392}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &934360394 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4768625605125846915, guid: 0cae3004f478a0b4caa3bc72d2f29884, type: 3}
+  m_PrefabInstance: {fileID: 934360392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &935379845
 GameObject:
   m_ObjectHideFlags: 0
@@ -6790,6 +6858,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 852557770441310263, guid: 7b7e8778afdcdd246a2af4c01a7a5cf3, type: 3}
+      propertyPath: creakingWood
+      value: 
+      objectReference: {fileID: 934360393}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b7e8778afdcdd246a2af4c01a7a5cf3, type: 3}
 --- !u!1 &1312887987250499197
