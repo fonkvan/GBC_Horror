@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6907862039619387251}
   - component: {fileID: 5135549918009683216}
   m_Layer: 0
-  m_Name: Green Doll
+  m_Name: Doll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b492b8ec14ec39a47be945be4b78db39, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3bccdc8cbca595c43a5f783a69e67579, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4444331904127098474}
   m_Layer: 0
-  m_Name: Doll B
+  m_Name: Yellow Doll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

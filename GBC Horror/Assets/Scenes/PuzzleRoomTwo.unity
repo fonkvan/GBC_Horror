@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 220773341}
   - component: {fileID: 220773340}
   - component: {fileID: 220773344}
+  - component: {fileID: 220773345}
   m_Layer: 0
   m_Name: Teddy (1)
   m_TagString: Teddy
@@ -209,10 +210,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solution:
   - {fileID: 1753296216}
-  - {fileID: 2033159382}
-  - {fileID: 1844974043}
   - {fileID: 287470450}
+  - {fileID: 1844974043}
   - {fileID: 220773338}
+  - {fileID: 2033159382}
 --- !u!50 &220773341
 Rigidbody2D:
   serializedVersion: 4
@@ -338,6 +339,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &220773345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220773338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2643d1c627f30fe4780597c0819adbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactUI: {fileID: 524736713}
 --- !u!1 &287470450
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +366,7 @@ GameObject:
   - component: {fileID: 287470453}
   - component: {fileID: 287470452}
   - component: {fileID: 287470456}
+  - component: {fileID: 287470457}
   m_Layer: 0
   m_Name: Teddy (4)
   m_TagString: Teddy
@@ -388,10 +403,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solution:
   - {fileID: 1753296216}
-  - {fileID: 2033159382}
-  - {fileID: 1844974043}
   - {fileID: 287470450}
+  - {fileID: 1844974043}
   - {fileID: 220773338}
+  - {fileID: 2033159382}
 --- !u!50 &287470453
 Rigidbody2D:
   serializedVersion: 4
@@ -517,6 +532,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &287470457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287470450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2643d1c627f30fe4780597c0819adbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactUI: {fileID: 524736713}
 --- !u!1 &380921901
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,6 +706,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 555256789}
     m_Modifications:
+    - target: {fileID: 1750822096, guid: ddcb0d867d682c2448fdaa523fe08352, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1351099731695963137, guid: ddcb0d867d682c2448fdaa523fe08352, type: 3}
       propertyPath: m_Name
       value: CanvasFader
@@ -778,6 +810,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1351099731695963150, guid: ddcb0d867d682c2448fdaa523fe08352, type: 3}
   m_PrefabInstance: {fileID: 524736710}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &524736713 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1750822097, guid: ddcb0d867d682c2448fdaa523fe08352, type: 3}
+  m_PrefabInstance: {fileID: 524736710}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &555256788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,7 +1135,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3e1e9adbe4d79c8469e4ab6ebcdfb8d7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0036d0dde343d043bbf3d49b1b62582, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1341,6 +1384,7 @@ GameObject:
   - component: {fileID: 1753296220}
   - component: {fileID: 1753296221}
   - component: {fileID: 1753296222}
+  - component: {fileID: 1753296223}
   m_Layer: 0
   m_Name: Teddy
   m_TagString: Teddy
@@ -1476,10 +1520,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solution:
   - {fileID: 1753296216}
-  - {fileID: 2033159382}
-  - {fileID: 1844974043}
   - {fileID: 287470450}
+  - {fileID: 1844974043}
   - {fileID: 220773338}
+  - {fileID: 2033159382}
 --- !u!61 &1753296222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1506,6 +1550,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &1753296223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753296216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2643d1c627f30fe4780597c0819adbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactUI: {fileID: 524736713}
 --- !u!1 &1844974043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,6 +1577,7 @@ GameObject:
   - component: {fileID: 1844974046}
   - component: {fileID: 1844974045}
   - component: {fileID: 1844974049}
+  - component: {fileID: 1844974050}
   m_Layer: 0
   m_Name: Teddy (2)
   m_TagString: Teddy
@@ -1556,10 +1614,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solution:
   - {fileID: 1753296216}
-  - {fileID: 2033159382}
-  - {fileID: 1844974043}
   - {fileID: 287470450}
+  - {fileID: 1844974043}
   - {fileID: 220773338}
+  - {fileID: 2033159382}
 --- !u!50 &1844974046
 Rigidbody2D:
   serializedVersion: 4
@@ -1685,6 +1743,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &1844974050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844974043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2643d1c627f30fe4780597c0819adbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactUI: {fileID: 524736713}
 --- !u!1 &1866165485
 GameObject:
   m_ObjectHideFlags: 0
@@ -2980,6 +3051,7 @@ GameObject:
   - component: {fileID: 2033159385}
   - component: {fileID: 2033159384}
   - component: {fileID: 2033159388}
+  - component: {fileID: 2033159389}
   m_Layer: 0
   m_Name: Teddy (3)
   m_TagString: Teddy
@@ -3016,10 +3088,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solution:
   - {fileID: 1753296216}
-  - {fileID: 2033159382}
-  - {fileID: 1844974043}
   - {fileID: 287470450}
+  - {fileID: 1844974043}
   - {fileID: 220773338}
+  - {fileID: 2033159382}
 --- !u!50 &2033159385
 Rigidbody2D:
   serializedVersion: 4
@@ -3145,6 +3217,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &2033159389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033159382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2643d1c627f30fe4780597c0819adbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactUI: {fileID: 524736713}
 --- !u!1 &2130156802
 GameObject:
   m_ObjectHideFlags: 0
