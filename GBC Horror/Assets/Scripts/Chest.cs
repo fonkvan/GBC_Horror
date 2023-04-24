@@ -6,6 +6,7 @@ using UnityEngine;
 public class Chest : MonoBehaviour
 {
     private PlayerController playerController;
+    private PuzzleOne puzzleController;
     private float canvasActivationTime;
     private SpriteRenderer spriteRenderer;
     public GameObject dial;
@@ -14,6 +15,7 @@ public class Chest : MonoBehaviour
 
     void Start()
     {
+        puzzleController = FindObjectOfType<PuzzleOne>();
         playerController = FindObjectOfType<PlayerController>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         
