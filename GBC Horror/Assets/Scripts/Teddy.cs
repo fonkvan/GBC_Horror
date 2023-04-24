@@ -6,16 +6,19 @@ using UnityEngine;
 public class Teddy : MonoBehaviour
 {
     public List<GameObject> solution;
+    private AudioSource squeak;
     private static List<GameObject> currentGuess;
 
     private void Start()
     {
         currentGuess = new List<GameObject>();
+        squeak = GetComponent<AudioSource>();
     }
 
     public void Interact()
     {
         AddGameObjectToList();
+        squeak.Play();
         if (currentGuess.Count == 5)
         {
             if (CheckGuess())
@@ -62,7 +65,6 @@ public class Teddy : MonoBehaviour
     private void EndPuzzle()
     {
         GameManager.Instance.puzzleTwoSolved = true;
-        
     }
 
     private void ResetPuzzle()

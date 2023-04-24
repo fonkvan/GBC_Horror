@@ -9,10 +9,12 @@ public class Tile : MonoBehaviour
     public PuzzleThree pThree;
     public Sprite normal;
     public Sprite pushed;
+    private AudioSource click;
 
     private void Start()
     {
         state = false;
+        click = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,6 +33,8 @@ public class Tile : MonoBehaviour
         {
             SetSpriteNormal();
         }
+
+        click.Play();
     }
 
     public void SetSpritePushed()
