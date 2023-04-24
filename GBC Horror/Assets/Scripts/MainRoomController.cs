@@ -22,7 +22,7 @@ public class MainRoomController : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gemsSet)
+        if (GameManager.Instance.buttonsPressed == 3)
         {
             OpenGate();
             gateOpening.Play();

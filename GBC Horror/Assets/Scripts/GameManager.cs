@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     private Vector3 defaultPos = new Vector3(1.5f, -0.5f, 0f);
     public Vector3 defaultMonsterPos = new Vector3(-0.5f, 2.5f, 0f);
     public GameObject finalMonster;
+    public int buttonsPressed = 0;
+    public bool monsterCanMove = true;
 
     public AudioSource creakingWood;
     private float timeSincePlayed;
@@ -39,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (finalMonster && gemsSet)
+        if (finalMonster && gemsSet && monsterCanMove)
         {
             finalMonster.SetActive(true);
         }
@@ -88,7 +90,14 @@ public class GameManager : MonoBehaviour
         puzzleThreeSolved = false;
         mainRoomPos = defaultPos;
         gemsSet = false;
+        buttonsPressed = 0;
+        monsterCanMove = true;
         finalMonster.GetComponent<Monster>().Default();
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void DestroyMonster()
+    {
+        finalMonster.gameObject.SetActive(false);
     }
 }

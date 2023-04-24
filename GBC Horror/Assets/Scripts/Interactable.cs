@@ -8,12 +8,14 @@ public class Interactable : MonoBehaviour
 {
     public TextMeshProUGUI interactUI;
     protected bool playerInRange = false;
+    protected bool inTrigger = false;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             ShowUI();
+            inTrigger = true;
         }
     }
 
@@ -22,16 +24,17 @@ public class Interactable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             HideUI();
+            inTrigger = false;
         }
     }
     
-    private void ShowUI()
+    protected void ShowUI()
     {
         interactUI.enabled = true;
         playerInRange = true;
     }
 
-    private void HideUI()
+    protected void HideUI()
     {
         interactUI.enabled = false;
         playerInRange = false;

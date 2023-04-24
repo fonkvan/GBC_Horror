@@ -10,7 +10,7 @@ public class Monster : MonoBehaviour
     
     void Update()
     {
-        if (!isMoving)
+        if (!isMoving && GameManager.Instance.monsterCanMove)
         {
             StartCoroutine(ChasePlayer());
         }
