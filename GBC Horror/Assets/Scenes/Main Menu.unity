@@ -486,7 +486,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Phantom Puzzles
+  m_text: Ghastly Puzzles
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b95745838622bf643b5281490cb2a2c5, type: 2}
   m_sharedMaterial: {fileID: 5597180427517206844, guid: b95745838622bf643b5281490cb2a2c5, type: 2}
