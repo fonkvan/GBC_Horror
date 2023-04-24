@@ -58,13 +58,13 @@ public class PuzzleThree : MonoBehaviour
         gateOpening = GetComponent<AudioSource>();
 
         endPuzzle += DisablePuzzle;
-        endPuzzle += DisableOtherSounds;
+        //endPuzzle += DisableOtherSounds;
         endPuzzle += PlayPuzzleEndSound;
-        endPuzzle += DisablePlayerController;
+        //endPuzzle += DisablePlayerController;
         endPuzzle += OpenGate;
 
-        resumeWorldStatus += EnableAudio;
-        resumeWorldStatus += EnablePlayerController;
+        //resumeWorldStatus += EnableAudio;
+       // resumeWorldStatus += EnablePlayerController;
         
         gateOpening.ignoreListenerPause = true;
 
@@ -129,7 +129,7 @@ public class PuzzleThree : MonoBehaviour
     {
         gateOpening.Play();
     }
-
+/*
     void EnablePlayerController()
     {
         playerController.enabled = true;
@@ -139,7 +139,7 @@ public class PuzzleThree : MonoBehaviour
     {
         playerController.enabled = false;
     }
-
+*/
     void OpenGate()
     {
         gateA.gameObject.GetComponent<SpriteRenderer>().sprite = gateOpenSprite;
