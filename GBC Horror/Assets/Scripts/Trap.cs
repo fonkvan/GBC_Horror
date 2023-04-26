@@ -17,11 +17,7 @@ public class Trap : MonoBehaviour
     {
         if (waitToDestroyMonster)
         {
-            //check if anim done playing
-            //if true then:
-            spikesAnim.SetTrigger("spikesActive");
-            GameManager.Instance.DestroyMonster();
-            waitToDestroyMonster = false;
+            StartCoroutine(WaitToDestroy());
         }
     }
 
@@ -36,8 +32,15 @@ public class Trap : MonoBehaviour
     private void ActivateTrap()
     {
         GameManager.Instance.monsterCanMove = false;
-        //play anim
         spikesAnim.SetTrigger("spikesActive");
         waitToDestroyMonster = true;
+    }
+
+    IEnumerator WaitToDestroy()
+    {
+        yield return new WaitForSeconds(1);
+        spikesAnim.SetTrigger("spikesActive");
+        GameManager.Instance.DestroyMonster();
+        waitToDestroyMonster = false;
     }
 }
