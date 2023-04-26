@@ -31,16 +31,14 @@ public class Jumpscare : MonoBehaviour
 
     void StartJumpscare()
     {
-        print("received message");
         animator.SetTrigger("jumpscare");
-        Vector3 targetPosition = transform.position + new Vector3(4, 0, 0);
+        Vector3 targetPosition = transform.position + new Vector3(8, 0, 0);
         print(targetPosition);
         StartCoroutine(MoveOverTime(targetPosition));
     }
 
     IEnumerator MoveOverTime(Vector3 targetPosition)
     {
-        print("coroutine started");
         sounds.Play();
         while ((targetPosition - transform.position).sqrMagnitude > Mathf.Epsilon)
         {

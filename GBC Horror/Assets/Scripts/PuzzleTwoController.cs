@@ -5,6 +5,7 @@ using UnityEngine;
 public class PuzzleTwoController : MonoBehaviour
 {
     public GameObject gem;
+    public GameObject jumpscareMonster;
     private static bool notDoneSolvedThing = false;
 
     // Update is called once per frame
@@ -15,6 +16,7 @@ public class PuzzleTwoController : MonoBehaviour
             if (GameManager.Instance.puzzleTwoSolved)
             {
                 notDoneSolvedThing = true;
+                jumpscareMonster.SetActive(true);
                 gem.SetActive(true);
                 GetComponent<AudioSource>().Play();
             }
