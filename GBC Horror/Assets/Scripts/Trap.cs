@@ -6,6 +6,12 @@ using UnityEngine;
 public class Trap : MonoBehaviour
 {
     private bool waitToDestroyMonster = false;
+    private Animator spikesAnim;
+
+    private void Start()
+    {
+        spikesAnim = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -13,6 +19,7 @@ public class Trap : MonoBehaviour
         {
             //check if anim done playing
             //if true then:
+            spikesAnim.SetTrigger("spikesActive");
             GameManager.Instance.DestroyMonster();
             waitToDestroyMonster = false;
         }
@@ -30,6 +37,7 @@ public class Trap : MonoBehaviour
     {
         GameManager.Instance.monsterCanMove = false;
         //play anim
+        spikesAnim.SetTrigger("spikesActive");
         waitToDestroyMonster = true;
     }
 }

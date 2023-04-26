@@ -7,7 +7,14 @@ public class Monster : MonoBehaviour
 {
     public float moveSpeed;
     private bool isMoving = false;
-    
+
+    private Animator fmAnim;
+
+    private void Start()
+    {
+        fmAnim = GetComponent<Animator>();
+    }
+
     void Update()
     {
         if (!isMoving && GameManager.Instance.monsterCanMove)
@@ -26,6 +33,7 @@ public class Monster : MonoBehaviour
         }
         
         isMoving = true;
+        fmAnim.SetBool("fmIsMoving", isMoving);
         Vector3 playerPos = player.transform.position;
         Vector3 goalPos = transform.position;
         float moveX = 0f;
@@ -36,10 +44,12 @@ public class Monster : MonoBehaviour
             if (playerPos.x > transform.position.x)
             {
                 moveX = 1;
+                fmAnim.SetFloat("moveDirection", moveX);
             }
             else
             {
                 moveX = -1;
+                fmAnim.SetFloat("moveDirection", moveX);
             }
         }
         else
@@ -63,6 +73,7 @@ public class Monster : MonoBehaviour
             yield return null;
         }
         isMoving = false;
+        fmAnim.SetBool("fmIsMoving", isMoving);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -76,6 +87,7 @@ public class Monster : MonoBehaviour
     public void Default()
     {
         isMoving = false;
+        fmAnim.SetBool("fmIsMoving", isMoving);
         gameObject.transform.position = GameManager.Instance.defaultMonsterPos;
         gameObject.SetActive(false);
     }

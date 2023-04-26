@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
 
     public void DestroyMonster()
     {
+
         finalMonster.gameObject.SetActive(false);
     }
 }

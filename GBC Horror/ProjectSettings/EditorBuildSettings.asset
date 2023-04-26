@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PuzzleRoomThree.unity
     guid: fa27e12bd6fe89b49bdc2fdc59468509
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 935930372813d9449a588b6aa7a36f56
   m_configObjects: {}
