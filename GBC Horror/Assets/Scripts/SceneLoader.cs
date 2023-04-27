@@ -18,7 +18,7 @@ public class SceneLoader : MonoBehaviour
         {
             GameManager.Instance.mainRoomPos = positionToReturnTo.transform.position;
         }
-        
+
         if (col.CompareTag("Player"))
         {
             FadeToLevel();
@@ -45,6 +45,10 @@ public class SceneLoader : MonoBehaviour
 
     public void OnFadeComplete()
     {
+        if (sceneToLoad == "WinScreen")
+        {
+            GameManager.Instance.ResetGame();
+        }
         SceneManager.LoadScene(sceneToLoad);
     }
 }
