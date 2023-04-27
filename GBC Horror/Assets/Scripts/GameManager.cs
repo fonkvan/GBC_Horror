@@ -41,6 +41,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Application.Quit();
+        }
+        
         if (finalMonster && gemsSet && monsterCanMove)
         {
             finalMonster.SetActive(true);
